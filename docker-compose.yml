@@ -1,4 +1,4 @@
-version: '3.9'  # Define a versão do Docker Compose utilizada
+# version: '3.9'  # Define a versão do Docker Compose utilizada (Obsoleto)
 
 services:
   # Serviço do banco de dados PostgreSQL

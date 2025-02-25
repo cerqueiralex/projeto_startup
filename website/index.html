@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulação de Compra</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Simulação de Compra</h2>
+        <form onsubmit="enviarCompra(event)" class="p-4 bg-white shadow rounded">
+            
+            <h4>Dados do Cliente</h4>
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome:</label>
+                <input type="text" class="form-control" id="nome" name="nome" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">E-mail:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="telefone" class="form-label">Telefone:</label>
+                <input type="text" class="form-control" id="telefone" name="telefone" required>
+            </div>
+            <div class="mb-3">
+                <label for="endereco" class="form-label">Endereço:</label>
+                <textarea class="form-control" id="endereco" name="endereco" required></textarea>
+            </div>
+            
+            <h4>Pedido</h4>
+            <div class="mb-3">
+                <label for="produto" class="form-label">Produto:</label>
+                <select class="form-select" id="produto" name="produto" required>
+                    <option value="1">Smartphone X</option>
+                    <option value="2">Notebook Ultra</option>
+                    <option value="3">Fone de Ouvido Pro</option>
+                    <option value="4">Smartwatch Fit</option>
+                    <option value="5">Tablet Max</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="quantidade" class="form-label">Quantidade:</label>
+                <input type="number" class="form-control" id="quantidade" name="quantidade" min="1" required>
+            </div>
+            
+            <h4>Pagamento</h4>
+            <div class="mb-3">
+                <label for="metodo_pagamento" class="form-label">Método de Pagamento:</label>
+                <select class="form-select" id="metodo_pagamento" name="metodo_pagamento" required>
+                    <option value="Cartão de Crédito">Cartão de Crédito</option>
+                    <option value="Boleto">Boleto</option>
+                    <option value="PIX">PIX</option>
+                    <option value="PayPal">PayPal</option>
+                    <option value="Transferência">Transferência</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="status_pagamento" class="form-label">Status do Pagamento:</label>
+                <select class="form-select" id="status_pagamento" name="status_pagamento" required>
+                    <option value="Pendente">Pendente</option>
+                    <option value="Aprovado">Aprovado</option>
+                    <option value="Recusado">Recusado</option>
+                </select>
+            </div>
+            
+            <h4>Entrega</h4>
+            <div class="mb-3">
+                <label for="status_entrega" class="form-label">Status da Entrega:</label>
+                <select class="form-select" id="status_entrega" name="status_entrega" required>
+                    <option value="Aguardando envio">Aguardando envio</option>
+                    <option value="Em trânsito">Em trânsito</option>
+                    <option value="Entregue">Entregue</option>
+                    <option value="Devolvido">Devolvido</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="transportadora" class="form-label">Transportadora:</label>
+                <select class="form-select" id="transportadora" name="transportadora" required>
+                    <option value="Correios">Correios</option>
+                    <option value="FedEx">FedEx</option>
+                    <option value="DHL">DHL</option>
+                </select>
+            </div>
+            
+            <h4>Cupom de Desconto</h4>
+            <div class="mb-3">
+                <label for="cupom" class="form-label">Código do Cupom:</label>
+                <select class="form-select" id="cupom" name="cupom">
+                    <option value="DESCONTO10">DESCONTO10</option>
+                    <option value="FRETEGRATIS">FRETEGRATIS</option>
+                    <option value="PROMO2024">PROMO2024</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-100">Finalizar Compra</button>
+        </form>
+    </div>    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
