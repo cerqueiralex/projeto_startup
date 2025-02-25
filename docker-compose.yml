@@ -1,0 +1,42 @@
+version: '3.9'  # Define a versão do Docker Compose utilizada
+
+services:
+  # Serviço do banco de dados PostgreSQL
+  postgres:
+    image: postgres:latest  # Usa a imagem mais recente do PostgreSQL disponível no Docker Hub
+    container_name: meu_postgres  # Nome do contêiner PostgreSQL
+    environment:
+      - POSTGRES_USER=postgres  # Define o usuário do banco de dados
+      - POSTGRES_PASSWORD=minha_senha_secreta  # Define a senha do banco de dados
+      - POSTGRES_DB=meu_ecommerce_db  # Define o nome do banco de dados que será criado
+    ports:
+      - "5432:5432"  # Mapeia a porta local 5432 para a porta do contêiner PostgreSQL
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Persiste os dados do PostgreSQL em um volume nomeado
+    networks:
+      - ecommerce_network  # Conecta o banco de dados à rede do e-commerce
+
+  # Serviço da API
+  api:
+    build: ./api  # Especifica que a API será construída a partir do diretório "./api"
+    container_name: minha_api  # Nome do contêiner da API
+    ports:
+      - "8000:8000"  # Mapeia a porta 8000 do host para a porta 8000 do contêiner
+    depends_on:
+      - postgres  # Garante que o serviço do banco de dados inicie antes da API
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://postgres:minha_senha_secreta@postgres:5432/meu_ecommerce_db
+        # Define a URL de conexão com o banco de dados usando o driver asyncpg
+    volumes:
+      - ./api:/app  # Monta o diretório local "./api" dentro do contêiner no diretório "/app"
+    networks:
+      - ecommerce_network  # Conecta a API à mesma rede do banco de dados
+
+# Define volumes persistentes para armazenar os dados do PostgreSQL
+volumes:
+  postgres_data:
+
+# Define a rede para comunicação entre os serviços do e-commerce
+networks:
+  ecommerce_network:
+    driver: bridge  # Usa o driver de rede "bridge" para comunicação entre os contêineres

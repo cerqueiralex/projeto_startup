@@ -1,0 +1,20 @@
+# Usar Python 3.10 como base
+FROM python:3.10
+
+# Definir diretório de trabalho dentro do container
+WORKDIR /app
+
+# Copiar dependências
+COPY requirements.txt .
+
+# Instalar dependências
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiar código da API para dentro do container
+COPY . .
+
+# Expor porta da API
+EXPOSE 8000
+
+# Comando para rodar a API
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
